@@ -1,0 +1,31 @@
+실행: VS Code에서 폴더 열기 → index.html 우클릭 → Open with Live Server
+
+상품 정보: products.csv를 엑셀로 수정
+사진: assets 폴더에 넣기
+
+기본 상품:
+assets/bag01/main.jpg
+assets/bag01/detail01.jpg ~ detail09.jpg
+
+색상별 상품 예시 bag04:
+products.csv의 colors 칸 = 블랙:black|베이지:beige
+
+이미지 폴더:
+assets/bag04/black/main.jpg
+assets/bag04/black/detail01.jpg ~ detail09.jpg
+assets/bag04/beige/main.jpg
+assets/bag04/beige/detail01.jpg ~ detail09.jpg
+
+새 상품 추가:
+1 products.csv에 한 줄 추가
+2 folder를 bag05 같은 이름으로 입력
+3 assets/bag05 폴더 만들기
+4 main.jpg, detail01.jpg ~ detail09.jpg 넣기
+
+색상 상품 추가:
+1 folder를 bag06 입력
+2 colors 칸에 블랙:black|베이지:beige 입력
+3 assets/bag06/black 와 assets/bag06/beige 폴더 만들기
+4 각 폴더에 main.jpg, detail01.jpg ~ detail09.jpg 넣기
+
+작업 전에는 폴더 전체를 복사해서 백업해두세요.
