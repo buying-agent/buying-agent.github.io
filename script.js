@@ -264,7 +264,7 @@ tabs.forEach(button => {
     const category = button.dataset.cat;
 
     // 열어둘 카테고리
-    if (category === "bag" || category === "etc") {
+    if (category === "bag" || category === "etc" || category === "shoes") {
       bagArea.classList.remove("hidden");
       readyArea.classList.add("hidden");
       renderProducts(category);
