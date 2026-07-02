@@ -300,6 +300,20 @@ document.querySelector("#applyProduct").onclick = () => {
   modal.classList.remove("show");
   location.hash = "request";
 };
+/* 우클릭 방지 */
+document.addEventListener("contextmenu", function (event) {
+  event.preventDefault();
+});
+
+/* 드래그 방지 */
+document.addEventListener("dragstart", function (event) {
+  event.preventDefault();
+});
+
+/* 텍스트 선택 시작 방지 */
+document.addEventListener("selectstart", function (event) {
+  event.preventDefault();
+});
 
 loadProducts();
 /* 이미지 드래그 / 우클릭 방지 */

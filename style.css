@@ -121,8 +121,8 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
-/* 드래그 / 선택 방지 */
-body {
+/* 텍스트 선택 / 이미지 드래그 방지 */
+* {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -131,5 +131,4 @@ body {
 img {
   -webkit-user-drag: none;
   user-drag: none;
-  pointer-events: none;
 }
