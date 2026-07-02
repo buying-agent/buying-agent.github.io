@@ -302,3 +302,15 @@ document.querySelector("#applyProduct").onclick = () => {
 };
 
 loadProducts();
+/* 이미지 드래그 / 우클릭 방지 */
+document.addEventListener("dragstart", e => {
+  if (e.target.tagName === "IMG") {
+    e.preventDefault();
+  }
+});
+
+document.addEventListener("contextmenu", e => {
+  if (e.target.tagName === "IMG") {
+    e.preventDefault();
+  }
+});
