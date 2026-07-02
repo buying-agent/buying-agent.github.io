@@ -132,3 +132,17 @@ img {
   -webkit-user-drag: none;
   user-drag: none;
 }
+/* 모바일 이미지 저장/선택 방지 */
+* {
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+}
+
+img {
+  -webkit-user-drag: none;
+  user-drag: none;
+  -webkit-touch-callout: none;
+  user-select: none;
+}

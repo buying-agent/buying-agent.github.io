@@ -314,6 +314,24 @@ document.addEventListener("dragstart", function (event) {
 document.addEventListener("selectstart", function (event) {
   event.preventDefault();
 });
+/* 우클릭 / 드래그 / 선택 / 모바일 길게누르기 방지 */
+document.addEventListener("contextmenu", function (event) {
+  event.preventDefault();
+});
+
+document.addEventListener("dragstart", function (event) {
+  event.preventDefault();
+});
+
+document.addEventListener("selectstart", function (event) {
+  event.preventDefault();
+});
+
+document.addEventListener("touchstart", function (event) {
+  if (event.target.tagName === "IMG") {
+    event.target.style.webkitTouchCallout = "none";
+  }
+});
 
 loadProducts();
 /* 이미지 드래그 / 우클릭 방지 */
