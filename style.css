@@ -1,6 +1,3 @@
-/* =========================================================
-   BASIC RESET
-========================================================= */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -38,9 +35,7 @@ img {
   user-select: none;
 }
 
-/* =========================================================
-   HEADER
-========================================================= */
+/* 헤더 */
 header {
   height: 78px;
   background: #000;
@@ -57,7 +52,15 @@ header {
 .logo {
   color: #d7ad61;
   font-weight: 900;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
+}
+
+.logo span {
+  display: block;
+  color: #aaa;
+  font-size: 12px;
+  margin-top: 4px;
+  letter-spacing: 0;
 }
 
 nav {
@@ -65,17 +68,11 @@ nav {
   gap: 30px;
 }
 
-nav a {
-  font-weight: 800;
-}
-
 nav a:hover {
   color: #d7ad61;
 }
 
-/* =========================================================
-   COMMON
-========================================================= */
+/* 공통 */
 .gold {
   color: #d7ad61 !important;
   font-weight: 900;
@@ -86,52 +83,41 @@ nav a:hover {
   margin-bottom: 6px;
 }
 
-.hidden {
-  display: none !important;
-}
-
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  background: linear-gradient(135deg, #f0d28b, #b98135);
+  background: linear-gradient(135deg, #e8c983, #b98135);
   color: #111;
   border: 0;
-  border-radius: 10px;
-  padding: 16px 30px;
+  border-radius: 8px;
+  padding: 16px 28px;
   font-weight: 900;
   margin-top: 24px;
-  min-width: 172px;
-  box-shadow: 0 14px 34px rgba(185, 129, 53, 0.2);
-}
-
-.btn span {
-  font-size: 22px;
-  line-height: 1;
 }
 
 .btn.ghost {
-  background: rgba(0, 0, 0, 0.22);
+  background: transparent;
   color: #d7ad61;
-  border: 1px solid rgba(215, 173, 97, 0.65);
-  box-shadow: none;
+  border: 1px solid rgba(215, 173, 97, 0.6);
 }
 
 .btn.ghost:hover {
   background: rgba(215, 173, 97, 0.08);
 }
 
-/* =========================================================
-   HERO
-========================================================= */
+.hidden {
+  display: none !important;
+}
+
+/* 메인 히어로 */
 .hero {
-  min-height: 450px;
+  min-height: 520px;
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 76% 50%, rgba(215, 173, 97, 0.20), transparent 26%),
-    linear-gradient(120deg, #080808 0%, #11151e 52%, #060606 100%);
+    radial-gradient(circle at 75% 45%, rgba(215, 173, 97, 0.18), transparent 30%),
+    linear-gradient(120deg, #10141d 0%, #090909 72%);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
@@ -140,68 +126,45 @@ nav a:hover {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(0, 0, 0, 0.58), transparent 66%),
-    radial-gradient(circle at 50% 100%, rgba(215, 173, 97, 0.09), transparent 32%);
-  pointer-events: none;
-}
-
-.hero::after {
-  content: "";
-  position: absolute;
-  right: 9%;
-  top: 56px;
-  width: 330px;
-  height: 330px;
-  border: 1px solid rgba(215, 173, 97, 0.42);
-  border-radius: 50%;
-  box-shadow: 0 0 80px rgba(215, 173, 97, 0.12);
+    linear-gradient(90deg, rgba(0, 0, 0, 0.55), transparent 65%),
+    radial-gradient(circle at 30% 80%, rgba(215, 173, 97, 0.08), transparent 35%);
   pointer-events: none;
 }
 
 .hero-inner {
   position: relative;
   z-index: 2;
-  max-width: 1240px;
-  min-height: 450px;
+  max-width: 1220px;
   margin: 0 auto;
-  padding: 58px 24px;
+  min-height: 520px;
   display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
+  grid-template-columns: 1fr 1.05fr;
   align-items: center;
-  gap: 52px;
+  gap: 50px;
+  padding: 80px 24px;
 }
 
 .hero-label {
-  color: #d7ad61;
-  letter-spacing: 6px;
+  letter-spacing: 4px;
   font-size: 14px;
   font-weight: 900;
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 22px;
-}
-
-.hero-label span {
-  width: 52px;
-  height: 1px;
-  background: #d7ad61;
-  display: inline-block;
+  margin-bottom: 28px;
 }
 
 .hero h1 {
-  font-size: 56px;
-  line-height: 1.14;
+  font-size: 58px;
+  line-height: 1.15;
   letter-spacing: -3px;
-  margin-bottom: 24px;
+  margin: 0 0 26px;
   color: #fff;
-  text-shadow: 0 0 28px rgba(255, 255, 255, 0.12);
+  text-shadow: 0 0 28px rgba(255, 255, 255, 0.14);
 }
 
 .hero-desc {
   color: rgba(255, 255, 255, 0.72);
   font-size: 18px;
   line-height: 1.75;
+  margin-bottom: 34px;
 }
 
 .hero-buttons {
@@ -210,7 +173,7 @@ nav a:hover {
   flex-wrap: wrap;
 }
 
-/* HERO CATEGORY CARDS */
+/* 대문 카테고리 버튼 */
 .hero-categories {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -219,50 +182,49 @@ nav a:hover {
 }
 
 .hero-cat {
-  position: relative;
-  height: 210px;
-  border-radius: 24px;
-  border: 1px solid rgba(215, 173, 97, 0.48);
+  height: 190px;
+  border-radius: 28px;
+  border: 1px solid rgba(215, 173, 97, 0.35);
   background:
-    linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.015)),
-    rgba(0, 0, 0, 0.28);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.015)),
+    rgba(0, 0, 0, 0.25);
   color: #d7ad61;
   cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 11px;
+  gap: 14px;
   backdrop-filter: blur(10px);
   box-shadow:
-    0 24px 60px rgba(0, 0, 0, 0.38),
+    0 24px 60px rgba(0, 0, 0, 0.35),
     inset 0 0 32px rgba(215, 173, 97, 0.04);
   transition: 0.25s ease;
 }
 
 .hero-cat:hover {
   transform: translateY(-8px);
-  border-color: rgba(215, 173, 97, 0.9);
+  border-color: rgba(215, 173, 97, 0.85);
   box-shadow:
     0 30px 80px rgba(0, 0, 0, 0.5),
     0 0 28px rgba(215, 173, 97, 0.18);
 }
 
 .hero-icon {
-  width: 72px;
-  height: 72px;
+  width: 74px;
+  height: 74px;
   border-radius: 50%;
-  border: 1px solid rgba(215, 173, 97, 0.52);
+  border: 1px solid rgba(215, 173, 97, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 32px;
+  font-size: 34px;
+  color: #d7ad61;
 }
 
 .hero-cat strong {
   font-size: 18px;
   letter-spacing: 2px;
-  color: #fff;
 }
 
 .hero-cat em {
@@ -271,17 +233,7 @@ nav a:hover {
   font-size: 14px;
 }
 
-.hero-cat i {
-  position: absolute;
-  bottom: 22px;
-  font-style: normal;
-  color: #d7ad61;
-  font-size: 26px;
-}
-
-/* =========================================================
-   PRODUCT AREA
-========================================================= */
+/* 상품 영역 */
 .shop,
 .request {
   width: 86%;
@@ -401,6 +353,7 @@ nav a:hover {
   margin-top: 18px;
 }
 
+/* 준비중 */
 .ready {
   height: 320px;
   border: 1px dashed #444;
@@ -423,7 +376,7 @@ nav a:hover {
   color: #aaa;
 }
 
-/* SPARKLE TEXT */
+/* 반짝이 문구 */
 .sparkle-text {
   position: relative;
   display: inline-block;
@@ -502,9 +455,7 @@ nav a:hover {
   }
 }
 
-/* =========================================================
-   REQUEST
-========================================================= */
+/* 구매 신청 */
 .request input,
 .request textarea {
   width: 100%;
@@ -520,9 +471,7 @@ nav a:hover {
   height: 120px;
 }
 
-/* =========================================================
-   MODAL
-========================================================= */
+/* 상세 모달 */
 .modal {
   display: none;
   position: fixed;
@@ -661,9 +610,7 @@ footer {
   border-top: 1px solid #222;
 }
 
-/* =========================================================
-   MOBILE
-========================================================= */
+/* 모바일 */
 @media (max-width: 900px) {
   header {
     height: auto;
@@ -683,24 +630,15 @@ footer {
     min-height: auto;
   }
 
-  .hero::after {
-    display: none;
-  }
-
   .hero-inner {
     grid-template-columns: 1fr;
     min-height: auto;
-    padding: 58px 22px 42px;
-    gap: 32px;
-  }
-
-  .hero-label {
-    font-size: 12px;
-    letter-spacing: 4px;
+    padding: 68px 22px 46px;
+    gap: 38px;
   }
 
   .hero h1 {
-    font-size: 40px;
+    font-size: 42px;
     letter-spacing: -2px;
   }
 
@@ -730,10 +668,6 @@ footer {
 
   .hero-cat em {
     font-size: 12px;
-  }
-
-  .hero-cat i {
-    bottom: 14px;
   }
 
   .shop,
