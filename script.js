@@ -311,16 +311,9 @@ document.querySelector("#modalBg").onclick = () => {
 document.querySelector("#applyProduct").onclick = () => {
   if (!currentProduct) return;
 
-  const option = document.querySelector("#detailOption").value;
-  const color = currentProduct.colors.length
-    ? document.querySelector("#detailColor").selectedOptions[0].textContent
-    : "기본";
-
-  document.querySelector("#selectedProduct").value =
-    `${currentProduct.name} / ${currentProduct.price} / 색상: ${color} / 옵션: ${option}`;
+  window.open("https://t.me/select_buying", "_blank");
 
   modal.classList.remove("show");
-  location.hash = "request";
 };
 
 /* 우클릭 / 드래그 / 선택 / 모바일 길게누르기 방지 */

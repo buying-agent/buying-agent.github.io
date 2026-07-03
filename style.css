@@ -30,7 +30,6 @@ button {
 
 img {
   -webkit-user-drag: none;
-  user-drag: none;
   -webkit-touch-callout: none;
   user-select: none;
 }
@@ -725,4 +724,17 @@ footer {
   .thumb-list {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+/* 채팅문의 영역 */
+.chat-request {
+  text-align: center;
+}
+
+.chat-request p {
+  line-height: 1.8;
+  margin-top: 14px;
+}
+
+.chat-btn {
+  margin-top: 28px;
 }
