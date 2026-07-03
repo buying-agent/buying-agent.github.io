@@ -2,6 +2,14 @@ let PRODUCTS = [];
 let currentProduct = null;
 let currentColorFolder = "";
 
+const OPEN_CATEGORIES = ["bag", "etc", "shoes"];
+const CATEGORY_NAMES = {
+  bag: "가방",
+  etc: "잡화",
+  shoes: "신발",
+  clothes: "의류"
+};
+
 const bagArea = document.querySelector("#bagArea");
 const readyArea = document.querySelector("#readyArea");
 const readyTitle = document.querySelector("#readyTitle");
@@ -47,15 +55,17 @@ function parseCSV(text) {
     rows.push(row);
   }
 
-  const header = rows.shift().map(x =>
-    x.trim().replace(/^\uFEFF/, "")
+  const header = rows.shift().map(item =>
+    item.trim().replace(/^\uFEFF/, "")
   );
 
   return rows.map(row => {
     const obj = {};
+
     header.forEach((key, index) => {
       obj[key] = (row[index] || "").trim();
     });
+
     return obj;
   });
 }
@@ -90,7 +100,7 @@ function normalizeProduct(row) {
     folder: `assets/${row.folder}`,
     colors: parseColors(row.colors),
     options: row.options
-      ? row.options.split("|").map(v => v.trim())
+      ? row.options.split("|").map(value => value.trim()).filter(Boolean)
       : ["상담 후 옵션 확인"],
     status: row.status || "show"
   };
@@ -111,9 +121,7 @@ async function loadProducts() {
       );
 
     loading.classList.add("hidden");
-
-    // 처음에는 가방부터 노출
-    renderProducts("bag");
+    setCategory("bag", false);
   } catch (error) {
     loading.textContent =
       "products.csv를 불러오지 못했습니다. Live Server로 실행했는지 확인해주세요.";
@@ -136,6 +144,30 @@ function productImages(product, colorFolder = "") {
   return images;
 }
 
+/* 카테고리 열기 */
+function setCategory(category, shouldScroll = true) {
+  tabs.forEach(tab => {
+    tab.classList.toggle("active", tab.dataset.cat === category);
+  });
+
+  if (OPEN_CATEGORIES.includes(category)) {
+    bagArea.classList.remove("hidden");
+    readyArea.classList.add("hidden");
+    renderProducts(category);
+  } else {
+    bagArea.classList.add("hidden");
+    readyArea.classList.remove("hidden");
+    readyTitle.textContent = `${CATEGORY_NAMES[category] || "상품"} 상품 준비중`;
+  }
+
+  if (shouldScroll) {
+    document.querySelector("#shop")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+}
+
 /* 상품 목록 출력 */
 function renderProducts(category) {
   const products = PRODUCTS
@@ -143,10 +175,7 @@ function renderProducts(category) {
     .reverse();
 
   if (!products.length) {
-    const categoryName =
-      category === "bag" ? "가방" :
-      category === "etc" ? "잡화" :
-      "상품";
+    const categoryName = CATEGORY_NAMES[category] || "상품";
 
     bagArea.innerHTML = `
       <div class="ready">
@@ -164,8 +193,8 @@ function renderProducts(category) {
     return `
       <article class="product-card" data-id="${product.id}">
         <div class="product-img">
-          <img 
-            src="${mainImage}" 
+          <img
+            src="${mainImage}"
             alt="${product.name}"
             onerror="this.closest('.product-card').remove()"
           >
@@ -183,7 +212,7 @@ function renderProducts(category) {
   }).join("");
 
   document.querySelectorAll(".product-card").forEach(card => {
-    card.onclick = () => openDetail(card.dataset.id);
+    card.addEventListener("click", () => openDetail(card.dataset.id));
   });
 }
 
@@ -202,14 +231,14 @@ function renderDetailImages(product, colorFolder = "") {
   `).join("");
 
   thumbList.querySelectorAll(".thumb").forEach(button => {
-    button.onclick = () => {
+    button.addEventListener("click", () => {
       thumbList.querySelectorAll(".thumb").forEach(item => {
         item.classList.remove("active");
       });
 
       button.classList.add("active");
       bigImage.src = button.dataset.src;
-    };
+    });
   });
 }
 
@@ -255,25 +284,18 @@ function openDetail(id) {
   modal.classList.add("show");
 }
 
-/* 카테고리 탭 */
+/* 카테고리 탭 클릭 */
 tabs.forEach(button => {
-  button.onclick = () => {
-    tabs.forEach(item => item.classList.remove("active"));
-    button.classList.add("active");
+  button.addEventListener("click", () => {
+    setCategory(button.dataset.cat, false);
+  });
+});
 
-    const category = button.dataset.cat;
-
-    // 열어둘 카테고리
-    if (category === "bag" || category === "etc" || category === "shoes") {
-      bagArea.classList.remove("hidden");
-      readyArea.classList.add("hidden");
-      renderProducts(category);
-    } else {
-      bagArea.classList.add("hidden");
-      readyArea.classList.remove("hidden");
-      readyTitle.textContent = button.textContent + " 상품 준비중";
-    }
-  };
+/* 메인 대문 카테고리 버튼 클릭 */
+document.querySelectorAll(".hero-cat").forEach(button => {
+  button.addEventListener("click", () => {
+    setCategory(button.dataset.targetCat, true);
+  });
 });
 
 /* 모달 닫기 */
@@ -300,49 +322,24 @@ document.querySelector("#applyProduct").onclick = () => {
   modal.classList.remove("show");
   location.hash = "request";
 };
-/* 우클릭 방지 */
-document.addEventListener("contextmenu", function (event) {
-  event.preventDefault();
-});
 
-/* 드래그 방지 */
-document.addEventListener("dragstart", function (event) {
-  event.preventDefault();
-});
-
-/* 텍스트 선택 시작 방지 */
-document.addEventListener("selectstart", function (event) {
-  event.preventDefault();
-});
 /* 우클릭 / 드래그 / 선택 / 모바일 길게누르기 방지 */
-document.addEventListener("contextmenu", function (event) {
+document.addEventListener("contextmenu", event => {
   event.preventDefault();
 });
 
-document.addEventListener("dragstart", function (event) {
+document.addEventListener("dragstart", event => {
   event.preventDefault();
 });
 
-document.addEventListener("selectstart", function (event) {
+document.addEventListener("selectstart", event => {
   event.preventDefault();
 });
 
-document.addEventListener("touchstart", function (event) {
+document.addEventListener("touchstart", event => {
   if (event.target.tagName === "IMG") {
     event.target.style.webkitTouchCallout = "none";
   }
 });
 
 loadProducts();
-/* 이미지 드래그 / 우클릭 방지 */
-document.addEventListener("dragstart", e => {
-  if (e.target.tagName === "IMG") {
-    e.preventDefault();
-  }
-});
-
-document.addEventListener("contextmenu", e => {
-  if (e.target.tagName === "IMG") {
-    e.preventDefault();
-  }
-});

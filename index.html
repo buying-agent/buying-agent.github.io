@@ -23,6 +23,9 @@
 </head>
 
 <body>
+  <!-- =========================
+       HEADER
+  ========================== -->
   <header>
     <div class="logo">PREMIUM BUYING SERVICE</div>
 
@@ -33,52 +36,73 @@
     </nav>
   </header>
 
-<section id="home" class="hero">
-  <div class="hero-inner">
-    <div class="hero-text">
-      <p class="gold hero-label">PREMIUM BUYING SERVICE</p>
+  <!-- =========================
+       MAIN HERO
+  ========================== -->
+  <section id="home" class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-label">
+          PREMIUM BUYING SERVICE
+          <span></span>
+        </p>
 
-      <h1>프리미엄 구매대행 서비스</h1>
+        <h1>
+          프리미엄<br>
+          구매대행 서비스
+        </h1>
 
-      <p class="hero-desc">
-        가방 · 잡화 · 의류 · 신발까지<br>
-        업데이트되는 상품을 편하게 확인하고 문의해보세요.
-      </p>
+        <p class="hero-desc">
+          가방 · 잡화 · 의류 · 신발까지<br>
+          업데이트되는 상품을 편하게 확인하고 문의해보세요.
+        </p>
 
-      <div class="hero-buttons">
-        <a class="btn" href="#shop">상품 보러가기</a>
-        <a class="btn ghost" href="#request">구매대행 문의</a>
+        <div class="hero-buttons">
+          <a class="btn" href="#shop">
+            상품 보러가기 <span>›</span>
+          </a>
+
+          <a class="btn ghost" href="#request">
+            구매대행 문의 <span>›</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-categories">
+        <button class="hero-cat" data-target-cat="bag">
+          <span class="hero-icon">👜</span>
+          <strong>BAG</strong>
+          <em>가방</em>
+          <i>›</i>
+        </button>
+
+        <button class="hero-cat" data-target-cat="etc">
+          <span class="hero-icon">👛</span>
+          <strong>ACC</strong>
+          <em>잡화</em>
+          <i>›</i>
+        </button>
+
+        <button class="hero-cat" data-target-cat="clothes">
+          <span class="hero-icon">👕</span>
+          <strong>CLOTHES</strong>
+          <em>의류</em>
+          <i>›</i>
+        </button>
+
+        <button class="hero-cat" data-target-cat="shoes">
+          <span class="hero-icon">👟</span>
+          <strong>SHOES</strong>
+          <em>신발</em>
+          <i>›</i>
+        </button>
       </div>
     </div>
+  </section>
 
-    <div class="hero-categories">
-      <button class="hero-cat" data-target-cat="bag">
-        <span class="hero-icon">▣</span>
-        <strong>BAG</strong>
-        <em>가방</em>
-      </button>
-
-      <button class="hero-cat" data-target-cat="etc">
-        <span class="hero-icon">◇</span>
-        <strong>ACC</strong>
-        <em>잡화</em>
-      </button>
-
-      <button class="hero-cat" data-target-cat="clothes">
-        <span class="hero-icon">⌂</span>
-        <strong>CLOTHES</strong>
-        <em>의류</em>
-      </button>
-
-      <button class="hero-cat" data-target-cat="shoes">
-        <span class="hero-icon">◒</span>
-        <strong>SHOES</strong>
-        <em>신발</em>
-      </button>
-    </div>
-  </div>
-</section>
-
+  <!-- =========================
+       PRODUCT LIST
+  ========================== -->
   <section id="shop" class="shop">
     <div class="section-title">
       <div>
@@ -113,6 +137,9 @@
     </div>
   </section>
 
+  <!-- =========================
+       REQUEST FORM
+  ========================== -->
   <section id="request" class="request">
     <h2>구매대행 신청</h2>
     <p>상세창에서 신청 버튼을 누르면 상품명, 가격, 색상, 옵션이 자동 입력됩니다.</p>
@@ -124,6 +151,9 @@
     <button class="btn" type="button">상담 신청하기</button>
   </section>
 
+  <!-- =========================
+       PRODUCT DETAIL MODAL
+  ========================== -->
   <div id="modal" class="modal">
     <div class="modal-bg" id="modalBg"></div>
 
