@@ -288,7 +288,7 @@ function renderProducts(category) {
           <p class="gold">${product.categoryName}</p>
           <h3>${product.name}</h3>
           <p>${product.shortDesc}</p>
-          <strong class="card-inquiry">구매대행 문의 ›</strong>
+          <strong class="card-inquiry">상품 상세보기 ›</strong>
         </div>
       </article>
     `;
