@@ -8,7 +8,7 @@
 
   <!-- 링크 미리보기 설정 -->
   <meta property="og:title" content="프리미엄 구매대행 셀렉트샵">
-  <meta property="og:description" content="가방, 잡화, 의류, 신발까지 편하게 확인하고 문의해보세요.">
+  <meta property="og:description" content="가방, 신발, 잡화 상품을 편하게 확인하고 문의해보세요.">
   <meta property="og:image" content="https://buying-agent.github.io/preview.jpg">
   <meta property="og:url" content="https://buying-agent.github.io/">
   <meta property="og:type" content="website">
@@ -53,7 +53,7 @@
         </h1>
 
         <p class="hero-desc">
-          가방 · 잡화 · 의류 · 신발까지<br>
+          가방 · 신발 · 잡화까지<br>
           업데이트되는 상품을 편하게 확인하고 문의해보세요.
         </p>
 
@@ -80,13 +80,6 @@
           <span class="hero-icon">👛</span>
           <strong>ACC</strong>
           <em>잡화</em>
-          <i>›</i>
-        </button>
-
-        <button class="hero-cat" data-target-cat="clothes">
-          <span class="hero-icon">👕</span>
-          <strong>CLOTHES</strong>
-          <em>의류</em>
           <i>›</i>
         </button>
 
@@ -120,10 +113,11 @@
 
     <div class="tabs">
       <button class="active" data-cat="bag">가방</button>
-      <button data-cat="clothes">의류</button>
       <button data-cat="shoes">신발</button>
       <button data-cat="etc">잡화</button>
     </div>
+
+    <div id="subTabs" class="sub-tabs hidden"></div>
 
     <div id="loading" class="loading">
       상품을 불러오는 중입니다...

@@ -1,0 +1,2 @@
+Put your saved HTML file and the matching *_files folder here.
+Only JPG/JPEG files inside folders will be copied.

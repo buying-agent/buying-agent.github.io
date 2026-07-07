@@ -738,3 +738,42 @@ footer {
 .chat-btn {
   margin-top: 28px;
 }
+
+/* 세부 카테고리 필터 */
+.sub-tabs {
+  margin: 0 auto 26px;
+  padding: 14px 14px 12px;
+  border: 1px solid rgba(201, 163, 90, 0.18);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.sub-tabs-label {
+  color: #c9a35a;
+  font-size: 13px;
+  margin-bottom: 10px;
+  letter-spacing: 0.08em;
+}
+
+.sub-tabs-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
+.sub-tabs button {
+  border: 1px solid rgba(201, 163, 90, 0.45);
+  background: rgba(255, 255, 255, 0.04);
+  color: #ddd;
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.sub-tabs button.active,
+.sub-tabs button:hover {
+  background: #c9a35a;
+  color: #111;
+}
