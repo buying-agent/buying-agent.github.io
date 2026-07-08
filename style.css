@@ -777,3 +777,176 @@ footer {
   background: #c9a35a;
   color: #111;
 }
+
+
+/* 문의 채널 선택 탭 */
+.contact-tabs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 30px;
+}
+
+.contact-card {
+  min-height: 170px;
+  border-radius: 18px;
+  border: 1px solid rgba(215, 173, 97, 0.34);
+  background:
+    radial-gradient(circle at 82% 20%, rgba(215, 173, 97, 0.16), transparent 34%),
+    #080808;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  transition: 0.22s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(215, 173, 97, 0.9);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.42), 0 0 24px rgba(215, 173, 97, 0.14);
+}
+
+.contact-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-icon img {
+  width: 42px;
+  height: 42px;
+}
+
+.contact-card strong {
+  font-size: 21px;
+  color: #fff;
+}
+
+.contact-card em {
+  font-style: normal;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 14px;
+}
+
+.contact-card b {
+  color: #d7ad61;
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+.detail-contact-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.detail-contact-buttons .btn {
+  width: 100%;
+  margin-top: 0;
+  padding: 15px 12px;
+  gap: 8px;
+}
+
+.detail-contact-buttons img {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
+}
+
+.telegram-detail-btn {
+  background: linear-gradient(135deg, #38bdf8, #0f8fc9);
+  color: #fff;
+}
+
+.kakao-detail-btn {
+  background: #fee500;
+  color: #111;
+}
+
+@media (max-width: 900px) {
+  .contact-tabs,
+  .detail-contact-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-card {
+    min-height: 145px;
+  }
+}
+
+
+/* 우측 하단 고정 문의 버튼 */
+.floating-chat {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+}
+
+.floating-chat-btn {
+  min-width: 142px;
+  height: 52px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floating-chat-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.55);
+}
+
+.floating-chat-btn img {
+  width: 26px;
+  height: 26px;
+}
+
+.floating-telegram {
+  background: linear-gradient(135deg, #38bdf8, #0f8fc9);
+  color: #fff;
+}
+
+.floating-kakao {
+  background: #fee500;
+  color: #111;
+}
+
+@media (max-width: 900px) {
+  .floating-chat {
+    right: 12px;
+    bottom: 12px;
+    gap: 8px;
+  }
+
+  .floating-chat-btn {
+    min-width: 112px;
+    height: 46px;
+    padding: 0 13px;
+    font-size: 12px;
+  }
+
+  .floating-chat-btn img {
+    width: 22px;
+    height: 22px;
+  }
+}
