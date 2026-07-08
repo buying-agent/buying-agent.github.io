@@ -496,8 +496,7 @@ function makeInquiryMessage() {
     `상품명: ${currentProduct.name}`,
     colorText ? `색상: ${colorText}` : "",
     optionText ? `옵션: ${optionText}` : ""
-  ].filter(Boolean).join("
-");
+  ].filter(Boolean).join("\n");
 }
 
 async function copyInquiryMessage(message) {
