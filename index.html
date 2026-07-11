@@ -20,6 +20,21 @@
   <meta name="twitter:image" content="https://buying-agent.github.io/preview.jpg">
 
   <link rel="stylesheet" href="style.css">
+  <style>
+    .product-controls{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:22px 0 18px;flex-wrap:wrap}
+    .product-search-wrap{position:relative;flex:1;min-width:240px;max-width:560px}
+    .product-search{width:100%;box-sizing:border-box;padding:14px 48px 14px 18px;border:1px solid rgba(170,140,70,.45);border-radius:12px;background:#fff;font-size:15px;outline:none}
+    .product-search:focus{border-color:#aa8c46;box-shadow:0 0 0 3px rgba(170,140,70,.12)}
+    .clear-search{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:32px;height:32px;border:0;border-radius:50%;background:#eee;cursor:pointer;font-size:20px}
+    .result-count{margin:0;white-space:nowrap;font-size:14px;opacity:.72}
+    .pagination{display:flex;justify-content:center;align-items:center;gap:7px;margin:34px 0 6px;flex-wrap:wrap}
+    .pagination button{min-width:42px;height:42px;padding:0 12px;border:1px solid rgba(170,140,70,.4);border-radius:9px;background:#fff;cursor:pointer;font-weight:700}
+    .pagination button.active{background:#aa8c46;color:#fff;border-color:#aa8c46}
+    .pagination button:disabled{opacity:.35;cursor:default}
+    .pagination-ellipsis{padding:0 4px}
+    .hidden{display:none!important}
+    @media(max-width:600px){.product-controls{align-items:stretch}.product-search-wrap{max-width:none}.result-count{width:100%;text-align:right}.pagination{gap:5px}.pagination button{min-width:38px;height:38px;padding:0 9px}}
+  </style>
 </head>
 
 <body>
@@ -128,11 +143,20 @@
 
     <div id="subTabs" class="sub-tabs hidden"></div>
 
+    <div id="productControls" class="product-controls">
+      <div class="product-search-wrap">
+        <input id="productSearch" class="product-search" type="search" placeholder="상품명 또는 모델번호 검색" autocomplete="off" aria-label="상품 검색">
+        <button id="clearSearch" class="clear-search hidden" type="button" aria-label="검색어 지우기">×</button>
+      </div>
+      <p id="resultCount" class="result-count"></p>
+    </div>
+
     <div id="loading" class="loading">
       상품을 불러오는 중입니다...
     </div>
 
     <div id="bagArea" class="product-grid"></div>
+    <nav id="pagination" class="pagination hidden" aria-label="상품 페이지"></nav>
 
     <div id="readyArea" class="ready hidden">
       <h3 id="readyTitle">상품 준비중</h3>
@@ -190,6 +214,7 @@
       <div class="detail-right">
         <p class="gold" id="detailCategory"></p>
         <h2 id="detailName"></h2>
+        <p id="detailModel" class="model-number hidden"></p>
         <h3 id="detailPrice"></h3>
         <p id="detailDesc" class="desc"></p>
 

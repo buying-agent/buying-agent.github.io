@@ -346,6 +346,15 @@ nav a:hover {
   line-height: 1.6;
 }
 
+.product-info .model-number,
+.detail-right .model-number {
+  color: #d7ad61;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  margin: 7px 0 10px;
+}
+
 .product-info strong {
   display: block;
   color: #d7ad61;
