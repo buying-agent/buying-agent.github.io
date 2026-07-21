@@ -12,7 +12,30 @@ const KAKAO_APP_URL = "kakaoplus://plusfriend/talk/chat/_xmxfnwX";
   앱이 설치되지 않아 화면 전환이 없을 때만 웹 문의창을 새 탭으로 엽니다.
 */
 function openChatApp(appUrl, webUrl) {
-  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  const userAgent = navigator.userAgent;
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(userAgent);
+  const isKakaoInAppBrowser = /KAKAOTALK/i.test(userAgent);
+
+  /*
+    카카오톡 메시지 안에서 연 홈페이지는 채널 화면을 열 때 웹뷰가 종료됩니다.
+    Android에서는 홈페이지를 Chrome으로 먼저 넘겨 웹페이지가 사라지지 않게 합니다.
+  */
+  if (isKakaoInAppBrowser && /Android/i.test(userAgent)) {
+    const outsideUrl = new URL(window.location.href);
+    outsideUrl.searchParams.set("openChatOutside", appUrl.startsWith("kakaoplus:") ? "kakao" : "telegram");
+    outsideUrl.hash = "";
+
+    const intentPath = `${outsideUrl.host}${outsideUrl.pathname}${outsideUrl.search}`;
+    const fallbackUrl = encodeURIComponent(outsideUrl.href);
+    window.location.href = `intent://${intentPath}#Intent;scheme=${outsideUrl.protocol.replace(":", "")};package=com.android.chrome;S.browser_fallback_url=${fallbackUrl};end`;
+    return;
+  }
+
+  if (isKakaoInAppBrowser && /iPhone|iPad|iPod/i.test(userAgent)) {
+    navigator.clipboard?.writeText(window.location.href).catch(() => {});
+    window.alert("카카오톡 안에서는 문의 후 홈페이지가 종료됩니다. 홈페이지 주소를 복사했습니다. 오른쪽 아래 메뉴에서 'Safari로 열기'를 선택한 뒤 문의해 주세요.");
+    return;
+  }
 
   if (!isMobile) {
     window.open(webUrl, "_blank", "noopener,noreferrer");
@@ -33,6 +56,35 @@ function openChatApp(appUrl, webUrl) {
       window.open(webUrl, "_blank", "noopener,noreferrer");
     }
   }, 1500);
+}
+
+/* 외부 브라우저로 넘어온 뒤 사용자가 문의 앱을 직접 열도록 안내합니다. */
+const outsideChatChannel = new URL(window.location.href).searchParams.get("openChatOutside");
+if (outsideChatChannel) {
+  const cleanUrl = new URL(window.location.href);
+  cleanUrl.searchParams.delete("openChatOutside");
+  window.history.replaceState({}, "", cleanUrl.href);
+
+  const guide = document.createElement("div");
+  guide.setAttribute("role", "dialog");
+  guide.style.cssText = "position:fixed;inset:0;z-index:99999;background:rgba(0,0,0,.72);display:flex;align-items:center;justify-content:center;padding:24px";
+  guide.innerHTML = `
+    <div style="width:min(360px,100%);background:#fff;color:#111;border-radius:18px;padding:24px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.35)">
+      <strong style="display:block;font-size:20px;margin-bottom:10px">외부 브라우저로 열었습니다</strong>
+      <p style="margin:0 0 20px;line-height:1.55">이제 문의창을 열면 뒤로가기로<br>홈페이지에 다시 돌아올 수 있습니다.</p>
+      <button type="button" style="width:100%;border:0;border-radius:12px;padding:14px;background:#fee500;color:#111;font-size:16px;font-weight:700;cursor:pointer">${outsideChatChannel === "kakao" ? "카카오톡 문의 계속하기" : "텔레그램 문의 계속하기"}</button>
+    </div>
+  `;
+  document.body.appendChild(guide);
+
+  guide.querySelector("button").addEventListener("click", () => {
+    guide.remove();
+    if (outsideChatChannel === "kakao") {
+      openChatApp(KAKAO_APP_URL, KAKAO_CHAT_URL);
+    } else {
+      openChatApp(TELEGRAM_APP_URL, TELEGRAM_CHAT_URL);
+    }
+  });
 }
 
 document.querySelectorAll("[data-chat-channel]").forEach(link => {
