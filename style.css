@@ -1081,3 +1081,112 @@ footer {
     height: 22px;
   }
 }
+
+/* 좁은 모바일 화면에서도 상품 2열을 유지하기 위한 카드 최적화 */
+@media (max-width: 600px) {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  .shop,
+  .request {
+    width: 94%;
+    padding: 16px 10px;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .product-card {
+    min-width: 0;
+    border-radius: 12px;
+  }
+
+  .product-img {
+    height: auto;
+    aspect-ratio: 1 / 1.12;
+  }
+
+  .product-info {
+    min-width: 0;
+    padding: 11px 10px 13px;
+  }
+
+  .product-info .gold {
+    font-size: 12px;
+  }
+
+  .product-info h3 {
+    font-size: 15px;
+    line-height: 1.35;
+    margin: 5px 0;
+    overflow-wrap: anywhere;
+  }
+
+  .product-info .model-number {
+    font-size: 12px;
+    line-height: 1.4;
+    margin: 5px 0 7px;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .product-info .model-number-missing {
+    font-size: 11px;
+  }
+
+  .product-price {
+    gap: 3px;
+    height: auto;
+    min-height: 52px;
+    margin: 6px 0;
+    padding: 6px 5px 6px 8px;
+    box-shadow: inset 2px 0 0 #e8c983;
+  }
+
+  .product-price .price-main {
+    flex-wrap: wrap;
+    gap: 2px 4px;
+    line-height: 16px;
+  }
+
+  .product-price .price-label {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .product-price strong {
+    font-size: 13px;
+    line-height: 16px;
+    white-space: nowrap;
+  }
+
+  .product-price span {
+    font-size: 9px;
+    line-height: 1.3;
+  }
+
+  .product-info > p:not(.gold):not(.model-number) {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+
+  .product-info .card-inquiry {
+    font-size: 12px;
+    margin-top: 10px;
+  }
+
+  .floating-chat-btn {
+    min-width: 48px;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+  }
+
+  .floating-chat-btn span {
+    display: none;
+  }
+}
